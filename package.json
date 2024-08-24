@@ -71,6 +71,6 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@beezydev/create-files-from-template-base": "^1.5.8"
+    "@beezydev/create-files-from-template-base": "^1.5.9"
   }
 }
