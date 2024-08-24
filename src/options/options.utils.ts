@@ -164,12 +164,8 @@ export const getTemplatesQuickPickItems = (config: Config): QuickPickItem[] => {
 
   if (items?.length) {
     if (defaultTemplate) {
-      items = items.sort((current, next) =>
-        current.label === defaultTemplate
-          ? 1
-          : next.label === defaultTemplate
-          ? -1
-          : 0
+      items = items.sort((current) =>
+        current.label === defaultTemplate ? -1 : 1
       );
 
       items[0].label = `${items[0].label}${DEFAULT_LABEL}`;

@@ -24,26 +24,26 @@ export const getOptions = async (config: Config): Promise<Options> => {
 
   answers = await getTemplateName({ config, answers });
 
+  abortIfEmpty(!answers.template);
+
   const templateConfig = getTemplateFromConfig(
     config,
     (answers as Options)[ExtensionArg.TEMPLATE_NAME]
   );
 
+  abortIfEmpty(!templateConfig);
+
   answers = await getFileName(answers);
+
+  abortIfEmpty(!answers.fileName);
 
   answers = await getDirPath({ templateConfig, answers });
 
+  abortIfEmpty(!answers.dirPath);
+
   answers = await getTemplatePath({ config, templateConfig, answers });
 
-  // abort in case of missing required data
-  if (
-    !templateConfig ||
-    !answers.fileName ||
-    !answers.dirPath ||
-    !answers.templatePath
-  ) {
-    throw new Error("Aborted");
-  }
+  abortIfEmpty(!answers.templatePath);
 
   answers = await getFileNameTextReplacement({ templateConfig, answers });
 
@@ -58,6 +58,10 @@ export const getOptions = async (config: Config): Promise<Options> => {
   answers.configDir = config.folder;
 
   return answers as Options;
+};
+
+const abortIfEmpty = (condition: boolean) => {
+  if (condition) throw new Error("Aborted");
 };
 
 const getTemplateName = async ({
@@ -75,7 +79,7 @@ const getTemplateName = async ({
 
     templateName = templateQuickPick?.label;
 
-    if (config?.defaultTemplateName && templateName.includes(DEFAULT_LABEL)) {
+    if (config?.defaultTemplateName && templateName?.includes(DEFAULT_LABEL)) {
       templateName = templateName.replace(DEFAULT_LABEL, "").trim();
     }
   } else {
