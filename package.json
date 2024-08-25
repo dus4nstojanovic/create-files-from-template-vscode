@@ -11,6 +11,10 @@
   "categories": [
     "Other"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dus4nstojanovic/create-files-from-template-vscode.git"
+  },
   "activationEvents": [],
   "keywords": [
     "generate",
