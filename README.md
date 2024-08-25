@@ -8,7 +8,7 @@ You can use this extension for any language or framework (JavaScript, Node, Reac
 
 ## Features
 
-- Create a custom file structure using a terminal
+- Create a custom file structure from a context menu command
 - **Search and replace** - Replace file content with a custom text or file name (text, regex, inject files, ...)
 - Create **multiple templates**
 - Set **options** by configuring extension using a .**config JSON file** for each template - _cfft.config.json_, or:
