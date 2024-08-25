@@ -9,7 +9,12 @@ export function activate(context: vscode.ExtensionContext) {
     async (uri: vscode.Uri) => {
       const currentFolderPath = uri.fsPath;
 
-      const { config, created } = await getOrCreateConfig(currentFolderPath);
+      const rootPath = vscode.workspace.workspaceFolders?.[0]?.uri?.fsPath;
+
+      const { config, created } = await getOrCreateConfig({
+        currentFolderPath,
+        cfftFolderPath: rootPath,
+      });
 
       if (created) {
         vscode.window.showInformationMessage(

@@ -31,8 +31,6 @@ export const getOptions = async (config: Config): Promise<Options> => {
     (answers as Options)[ExtensionArg.TEMPLATE_NAME]
   );
 
-  abortIfEmpty(!templateConfig);
-
   answers = await getFileName(answers);
 
   abortIfEmpty(!answers.fileName);
@@ -74,19 +72,27 @@ const getTemplateName = async ({
   const templates = getTemplatesQuickPickItems(config);
 
   let templateName: string;
-  if (templates.length > 1) {
-    const templateQuickPick = await vscode.window.showQuickPick(templates);
+  if (!templates?.length) {
+    answers = await getInputArg({
+      arg: ExtensionArg.TEMPLATE_NAME,
+      message: "Enter template name:",
+      answers,
+    });
+  } else {
+    if (templates.length > 1) {
+      const templateQuickPick = await vscode.window.showQuickPick(templates);
 
-    templateName = templateQuickPick?.label;
+      templateName = templateQuickPick?.label;
+    } else {
+      templateName = templates?.[0]?.label;
+    }
 
     if (config?.defaultTemplateName && templateName?.includes(DEFAULT_LABEL)) {
       templateName = templateName.replace(DEFAULT_LABEL, "").trim();
     }
-  } else {
-    templateName = templates?.[0]?.label;
-  }
 
-  answers = setArg(ExtensionArg.TEMPLATE_NAME, templateName, answers);
+    answers = setArg(ExtensionArg.TEMPLATE_NAME, templateName, answers);
+  }
 
   return answers;
 };
