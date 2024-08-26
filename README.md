@@ -863,10 +863,11 @@ export const MyComponentRoot = styled("div", {
 
 ### Template fields
 
-| **Command** | **Description**          | **Type** |
-| :---------- | :----------------------- | :------- |
-| **name**    | Template name            | string   |
-| **options** | List of template options | object   |
+| **Command**     | **Description**                                  | **Type** |
+| :-------------- | :----------------------------------------------- | :------- |
+| **name**        | Template name                                    | string   |
+| **description** | A text to be displayed next to the template name | string   |
+| **options**     | List of template options                         | object   |
 
 ### Template options
 
