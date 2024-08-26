@@ -884,13 +884,13 @@ export const MyComponentRoot = styled("div", {
 
 ### Search and replace options
 
-| **Description**                                                              | **Field**      | **required** | **default** |
-| :--------------------------------------------------------------------------- | :------------- | :----------: | :---------: |
-| Text (or regex) to be replaced                                               | **search**     |      ✓       |             |
-| Text to be used for replacement - or path to the file when _injectFile=true_ | **replace**    |      ✓       |             |
-| Should ignore the letters case                                               | **ignoreCase** |              |    false    |
-| Should inject a file content at the found placeholder                        | **injectFile** |              |    false    |
-| In which order to do the search and replace (lower order has precedence)     | **order**      |              |      1      |
+| **Field**      | **Description**                                                              | **required** | **default** |
+| :------------- | :--------------------------------------------------------------------------- | :----------: | :---------: |
+| **search**     | Text (or regex) to be replaced                                               |      ✓       |             |
+| **replace**    | Text to be used for replacement - or path to the file when _injectFile=true_ |      ✓       |             |
+| **ignoreCase** | Should ignore the letters case                                               |              |    false    |
+| **injectFile** | Should inject a file content at the found placeholder                        |              |    false    |
+| **order**      | In which order to do the search and replace (lower order has precedence)     |              |      1      |
 
 ## Special replacement placeholders
 
