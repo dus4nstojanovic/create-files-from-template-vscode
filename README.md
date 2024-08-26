@@ -20,7 +20,7 @@ See [Releases](https://github.com/dus4nstojanovic/create-files-from-template-vsc
 
 ## Related repositories
 
-[Create Files From Template CLI](https://github.com/dus4nstojanovic/create-files-from-template-cli) - CLI - Use a terminal to create a list of files from templates.
+[Create Files From Template CLI](https://github.com/dus4nstojanovic/create-files-from-template-cli) - CLI - Use a terminal to create a list of files from templates.\
 [Create Files From Template Base](https://github.com/dus4nstojanovic/create-files-from-template-base) - Includes core utilities required for CFFT apps to work.
 
 ## Table of contents
