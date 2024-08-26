@@ -34,7 +34,7 @@ See [Releases](https://github.com/dus4nstojanovic/create-files-from-template-vsc
 - [Using the special replacement placeholders](#using-the-special-replacement-placeholders)
 - [Custom hooks](#custom-hooks)
 - [Creating a single file](#creating-a-single-file)
-- [Options](#options)
+- [Configuration](#configuration)
 - [Search and replace options](#search-and-replace-options)
 - [Special replacement placeholders](#special-replacement-placeholders)
 - [Placeholders](#placeholders)
@@ -828,21 +828,59 @@ export const MyComponentRoot = styled("div", {
 })(({ theme }) => ({}));
 ```
 
-## Options
+## The cfft.config.json structure
 
-| **Description**                                                                | **Command**                   | **Default**                | **Extension IDE** | **cfft.config** |
-| :----------------------------------------------------------------------------- | :---------------------------- | :------------------------- | :---------------: | :-------------: |
-| Path to the location where to generate files                                   | **dirPath**                   | ./{fileName}               |         ✓         |        ✓        |
-| Name of the template to use                                                    | **template**                  |                            |         ✓         |       ❌        |
-| Path to the specific template folder                                           | **templatePath**              | /.cfft.templates/component |         ✓         |        ✓        |
-| Default template name to be used every time when --template is not specified   | **defaultTemplateName**       | component                  |        ❌         |        ✓        |
-| Should or not extension replace a file name                                    | **shouldReplaceFileName**     | true                       |         ✓         |        ✓        |
-| Which part of the file name should be replaced                                 | **fileNameTextToBeReplaced**  | component                  |         ✓         |        ✓        |
-| Should or not extension replace a file content                                 | **shouldReplaceFileContent**  | true                       |         ✓         |        ✓        |
-| Text (or regex) to be replaced separated by a search and replace separator     | **textToBeReplaced**          | FileName                   |         ✓         |        ✓        |
-| Text to be used for replacement separated by a separator                       | **replaceTextWith**           | {fileName}                 |         ✓         |        ✓        |
-| Custom separator for search and replace                                        | **searchAndReplaceSeparator** | ;                          |        ❌         |        ✓        |
-| Add additional search and replace items through config (with extended options) | **searchAndReplace**          |                            |        ❌         |        ✓        |
+```json
+{
+  "defaultTemplateName": "component",
+  "templates": [
+    {
+      "name": "component",
+      "options": {
+        "templatePath": "/.cfft.templates/component",
+        "dirPath": "./{fileName}",
+        "fileNameTextToBeReplaced": "component",
+        "searchAndReplace": [
+          {
+            "search": "FileName",
+            "replace": "{fileName}"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+## Configuration
+
+### Root fields
+
+| **Command**             | **Description**                  | **Type** |
+| :---------------------- | :------------------------------- | :------- |
+| **defaultTemplateName** | Default template name to be used | string   |
+| **templates**           | List of template configurations  | array    |
+
+### Template fields
+
+| **Command** | **Description**          | **Type** |
+| :---------- | :----------------------- | :------- |
+| **name**    | Template name            | string   |
+| **options** | List of template options | object   |
+
+### Template options
+
+| **Command**                   | **Description**                                                                | **Type** |
+| :---------------------------- | :----------------------------------------------------------------------------- | :------- |
+| **dirPath**                   | Path to the location where to generate files                                   | string   |
+| **templatePath**              | Path to the specific template folder                                           | string   |
+| **shouldReplaceFileName**     | Should or not extension replace a file name                                    | boolean  |
+| **fileNameTextToBeReplaced**  | Which part of the file name should be replaced                                 | string   |
+| **shouldReplaceFileContent**  | Should or not extension replace a file content                                 | boolean  |
+| **textToBeReplaced**          | Text (or regex) to be replaced separated by a search and replace separator     | string   |
+| **replaceTextWith**           | Text to be used for replacement separated by a separator                       | string   |
+| **searchAndReplaceSeparator** | Custom separator for search and replace                                        | string   |
+| **searchAndReplace**          | Add additional search and replace items through config (with extended options) | array    |
 
 ### Search and replace options
 
