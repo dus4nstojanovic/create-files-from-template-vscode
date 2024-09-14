@@ -39,7 +39,7 @@ export const getOptions = async (config: Config): Promise<Options> => {
 
   abortIfEmpty(!answers.dirPath);
 
-  answers = await getTemplatePath({ config, templateConfig, answers });
+  answers = await getTemplatePath({ templateConfig, answers });
 
   abortIfEmpty(!answers.templatePath);
 
@@ -128,11 +128,9 @@ const getDirPath = async ({
 };
 
 const getTemplatePath = async ({
-  config,
   templateConfig,
   answers,
 }: {
-  config: Config;
   templateConfig: TemplateConfig | undefined;
   answers: Partial<Options>;
 }): Promise<Partial<Options>> => {
@@ -142,13 +140,6 @@ const getTemplatePath = async ({
     answers,
     templateConfig,
   });
-
-  if (answers[ExtensionArg.TEMPLATE_PATH].startsWith("/")) {
-    answers[ExtensionArg.TEMPLATE_PATH] = path.join(
-      config.folder,
-      answers[ExtensionArg.TEMPLATE_PATH]
-    );
-  }
 
   return answers;
 };
