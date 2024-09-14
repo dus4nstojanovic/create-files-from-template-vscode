@@ -28,7 +28,8 @@ export function activate(context: vscode.ExtensionContext) {
 
         await createAllDirectoriesAndFilesFromTemplate(
           currentFolderPath,
-          options
+          options,
+          rootPath,
         );
       } catch (e) {
         if (e.message === "Aborted") return;
