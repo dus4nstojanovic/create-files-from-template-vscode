@@ -12,7 +12,6 @@ import {
 import { Options } from "@beezydev/create-files-from-template-base/options";
 import { DEFAULT_LABEL, ExtensionArg } from "./options.constants";
 import * as vscode from "vscode";
-import path from "path";
 
 /**
  * Gets all option using the provided configuration, console arguments or inputs

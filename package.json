@@ -4,7 +4,7 @@
   "description": "A simple but powerful Visual Studio Code extension to generate a list of files from templates.",
   "icon": "images/icon.png",
   "publisher": "DusanStojanovic",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "engines": {
     "vscode": "^1.92.0"
   },
@@ -75,6 +75,6 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@beezydev/create-files-from-template-base": "^1.6.3"
+    "@beezydev/create-files-from-template-base": "^1.6.4"
   }
 }
