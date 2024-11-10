@@ -831,30 +831,29 @@ export const MyComponentRoot = styled("div", {
 
 ## Convert placeholder cases
 
-CFFT allows you to convert the string from your template to a different case. This is especially powerful if you want to convert the "file name" placeholder.
+CFFT allows you to convert strings from your template to different cases, making it especially useful for transforming placeholders like "file name" into various formats.
 
 ### The available convertors
 
-- **Camel case** - param-case -> paramCase
-- **Snake case** - camelCase -> camel_case
-- **Pascal case** - param-case -> ParamCase
-- **Dot case** - Title Case -> title.case
-- **Path case** - camelCase -> camel/case
-- **Text case** - camelCase -> camel case
-- **Sentence case** - camelCase -> Camel case
-- **Header case** - param-case -> Param Case
-- **Lower case** - Title Case -> title case
-- **Upper case** - param-case -> PARAM-CASE
-- **Kebab case** - Title Case -> title-case
-- **Lower snake case** ParamCase -> param-case
-- **Upper snake case** ParamCase -> PARAM-CASE
+- **Camel case** - `param-case` -> `paramCase`
+- **Snake case** - `camelCase` -> `camel_case`
+- **Pascal case** - `param-case` -> `ParamCase`
+- **Dot case** - `Title Case` -> `title.case`
+- **Path case** - `camelCase` -> `camel/case`
+- **Text case** - `camelCase` -> `camel case`
+- **Sentence case** - `camelCase` -> `Camel case`
+- **Header case** - `param-case` -> `Param Case`
+- **Lower case** - `Title Case` -> `title case`
+- **Upper case** - `param-case` -> `PARAM-CASE`
+- **Kebab case** - `Title Case` -> `title-case`
+- **Lower snake case** `ParamCase` -> `param-case`
+- **Upper snake case** `ParamCase` -> `PARAM-CASE`
 
 ### Usage
 
-To apply the case converter to any string from you template, just wrap it with `#(<TextToBeConverted>, <Option>)`.
+To apply a case converter to any string in your template, wrap it with `#(<TextToBeConverted>, <Option>)`.
 
-The option can be applied in a several ways. Options are case insensitive, and characters such as ` `, `_`, `-`, `.`, `/`, `\` are ignored.
-For example, if you want to provide the Pascal case, you can do it in one of the following ways:
+You can specify the option in multiple formats; options are case-insensitive, and characters such as ` `, `_`, `-`, `.`, `/` and `\` are ignored. For instance, to apply Pascal case, you can write:
 
 - `#(TextToBeConverted, PascalCase)`,
 - `#(TextToBeConverted, Pascal case)`,
@@ -865,14 +864,14 @@ For example, if you want to provide the Pascal case, you can do it in one of the
 
 ### Example
 
-1. Add the `constants.ts` file to your template folder (**.cfft.templates**):
+1. Add a `constants.ts` file to your template folder (**.cfft.templates**):
 
 ```
 ├── .cfft.templates
 │   ├── constants.ts
 ```
 
-2. File the file content:
+2. Populate the file with the following content:
 
 _constants.ts_
 
@@ -926,9 +925,9 @@ const route26 = routes.#(param-case, pascal case).route;
 }
 ```
 
-4. Execute the **New From Template... (CFFT)** command, choose the **constants** template and enter the file name: `MyConstants`.
+4. Run the **New From Template... (CFFT)** command, select the **constants** template, and enter the file name: `MyConstants`.
 
-5. The extension will create the `MyConstants.ts` file with the following content:
+5. The extension will generate a `MyConstants.ts` file with the following content:
 
 ```js
 import { routes } from 'constants/routes';
