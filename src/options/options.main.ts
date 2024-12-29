@@ -10,7 +10,7 @@ import {
   setArg,
 } from ".";
 import { Options } from "@beezydev/create-files-from-template-base/options";
-import { DEFAULT_LABEL, ExtensionArg } from "./options.constants";
+import { DEFAULT_LABEL, ExtensionArg, FILE_NAME_PLACEHOLDER } from "./options.constants";
 import * as vscode from "vscode";
 
 /**
@@ -30,9 +30,11 @@ export const getOptions = async (config: Config): Promise<Options> => {
     (answers as Options)[ExtensionArg.TEMPLATE_NAME]
   );
 
-  answers = await getFileName(answers);
+  if (shouldAskForFileName(templateConfig)) {
+    answers = await getFileName(answers);
 
-  abortIfEmpty(!answers.fileName);
+    abortIfEmpty(!answers.fileName);
+  }
 
   answers = await getDirPath({ templateConfig, answers });
 
@@ -60,6 +62,8 @@ export const getOptions = async (config: Config): Promise<Options> => {
 const abortIfEmpty = (condition: boolean) => {
   if (condition) throw new Error("Aborted");
 };
+
+
 
 const getTemplateName = async ({
   config,
@@ -94,6 +98,31 @@ const getTemplateName = async ({
   }
 
   return answers;
+};
+
+/**
+ * Determines whether a file name should be requested based on the provided template configuration.
+ *
+ * @param config - The template configuration object containing options.
+ * @returns `true` if the file name should be requested, otherwise `false`.
+ */
+export const shouldAskForFileName = (config: TemplateConfig): boolean => {
+  if (!config?.options) return true;
+
+  const { shouldReplaceFileName, searchAndReplace, ...restOptions } = config.options;
+
+  const optionsIncludeFileName = Object.values(restOptions || {}).some(
+    (value) => typeof value === "string" && value.includes(FILE_NAME_PLACEHOLDER)
+  );
+
+  const searchAndReplaceContainsPlaceholder = searchAndReplace?.some(
+    ({ search, replace }) =>
+      search.includes(FILE_NAME_PLACEHOLDER) || replace.includes(FILE_NAME_PLACEHOLDER)
+  ) ?? false;
+
+  if (shouldReplaceFileName === false && !optionsIncludeFileName && !searchAndReplaceContainsPlaceholder) return false;
+
+  return true;
 };
 
 const getFileName = async (
@@ -262,7 +291,7 @@ const getSearchAndReplaceItems = ({
     (sr) => ({
       ...sr,
       replace: sr.replace?.replace(
-        new RegExp("{fileName}", "g"),
+        new RegExp(FILE_NAME_PLACEHOLDER, "g"),
         answers[ExtensionArg.FILE_NAME]
       ),
     })

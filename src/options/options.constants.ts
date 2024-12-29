@@ -12,3 +12,5 @@ export enum ExtensionArg {
 }
 
 export const DEFAULT_LABEL = " (Default)";
+
+export const FILE_NAME_PLACEHOLDER = '{fileName}';

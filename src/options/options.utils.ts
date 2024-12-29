@@ -3,7 +3,7 @@ import {
   SearchAndReplaceItem,
   TemplateConfig,
 } from "@beezydev/create-files-from-template-base/config";
-import { DEFAULT_LABEL, ExtensionArg } from "./options.constants";
+import { DEFAULT_LABEL, ExtensionArg, FILE_NAME_PLACEHOLDER } from "./options.constants";
 import { Options } from "@beezydev/create-files-from-template-base/options";
 import { askConfirmQuestion, askInputQuestion } from "../questions";
 import { QuickPickItem } from "vscode";
@@ -74,12 +74,6 @@ export const getConfirmArg = (args: {
     shouldAsk: args?.shouldAsk,
   });
 
-// const getAnswerFromArgs = (arg: CLIArg, answers: Answers): Answers => {
-//   const value = extractArg(arg);
-//   if (value) answers[arg] = value;
-//   return answers;
-// };
-
 const getAnswerFromConfig = (
   arg: ExtensionArg,
   templateConfig: TemplateConfig | undefined,
@@ -143,7 +137,7 @@ const getArg = async ({
     arg !== ExtensionArg.FILE_NAME && typeof answers[arg] === "string";
   if (shouldReplace) {
     const value = (answers[arg] as string).replace(
-      new RegExp("{fileName}", "g"),
+      new RegExp(FILE_NAME_PLACEHOLDER, "g"),
       answers[ExtensionArg.FILE_NAME]
     );
 
