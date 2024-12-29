@@ -39,6 +39,8 @@ See [Releases](https://github.com/dus4nstojanovic/create-files-from-template-vsc
 - [Search and replace options](#search-and-replace-options)
 - [Special replacement placeholders](#special-replacement-placeholders)
 - [Placeholders](#placeholders)
+- [Extension configuration](#extension-configuration)
+- [Reuse configurations and templates across multiple projects](#reuse-configurations-and-templates-across-multiple-projects)
 
 ## Getting started (Tutorial)
 
@@ -1014,6 +1016,25 @@ const route26 = routes.ParamCase.route;
 ### Placeholders
 
 - **{fileName}** is a special value to indicate that specific text should be replaced with a specified file name (_--fileName_)
+
+## Extension configuration
+
+### Reuse configurations and templates across multiple projects
+
+To reuse your configuration and templates across projects, follow these steps:
+1. Open the Visual Studio Code settings.
+2. Locate the setting `CFFT: Root Folder` and specify the path to the folder containing your `cfft.config.json` file.
+
+Alternatively, you can update your `.vscode/settings.json` file directly by adding the following line:
+
+```json
+"CFFT.rootFolder": "<path-to-config-folder>"
+```
+
+- Replace `<path-to-config-folder>` with the desired folder path.
+- You can use either absolute or relative paths.
+
+This setup enables seamless sharing and reuse of your configurations and templates across multiple projects.
 
 ## License
 
