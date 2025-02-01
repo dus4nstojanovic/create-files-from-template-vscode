@@ -1,9 +1,14 @@
 import {
   Config,
+  IfStatementItem,
   SearchAndReplaceItem,
   TemplateConfig,
 } from "@beezydev/create-files-from-template-base/config";
-import { DEFAULT_LABEL, ExtensionArg, FILE_NAME_PLACEHOLDER } from "./options.constants";
+import {
+  DEFAULT_LABEL,
+  ExtensionArg,
+  FILE_NAME_PLACEHOLDER,
+} from "./options.constants";
 import { Options } from "@beezydev/create-files-from-template-base/options";
 import { askConfirmQuestion, askInputQuestion } from "../questions";
 import { QuickPickItem } from "vscode";
@@ -83,7 +88,11 @@ const getAnswerFromConfig = (
     templateConfig?.options?.[arg as keyof typeof templateConfig.options];
 
   if (configValue) {
-    (answers[arg] as string | true | SearchAndReplaceItem[]) = configValue;
+    (answers[arg] as
+      | string
+      | true
+      | SearchAndReplaceItem[]
+      | IfStatementItem[]) = configValue;
   }
 
   return answers;
