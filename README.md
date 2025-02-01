@@ -39,6 +39,7 @@ See [Releases](https://github.com/dus4nstojanovic/create-files-from-template-vsc
 - [Search and replace options](#search-and-replace-options)
 - [Special replacement placeholders](#special-replacement-placeholders)
 - [Placeholders](#placeholders)
+- [IntelliSense - JSON validation schema](#intellisense-json-validation-schema)
 - [Extension configuration](#extension-configuration)
 - [Reuse configurations and templates across multiple projects](#reuse-configurations-and-templates-across-multiple-projects)
 
@@ -1017,11 +1018,20 @@ const route26 = routes.ParamCase.route;
 
 - **{fileName}** is a special value to indicate that specific text should be replaced with a specified file name (_--fileName_)
 
+### IntelliSense - JSON validation schema
+
+If your `cfft.config.json` file does not have a `$schema` defined, add it as a root-level field:
+
+```json
+"$schema": "https://dus4nstojanovic.github.io/create-files-from-template-base/cfft.config-schema.json",
+```
+
 ## Extension configuration
 
 ### Reuse configurations and templates across multiple projects
 
 To reuse your configuration and templates across projects, follow these steps:
+
 1. Open the Visual Studio Code settings.
 2. Locate the setting `CFFT: Root Folder` and specify the path to the folder containing your `cfft.config.json` file.
 
